@@ -11,6 +11,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.scene.control.ScrollPane;
 
 public class HomepageGui {
 
@@ -18,6 +19,7 @@ public class HomepageGui {
 
     public HomepageGui(Stage primaryStage) {
         this.primaryStage = primaryStage;
+        primaryStage.setResizable(true);
         showHomepage();
     }
 
@@ -129,9 +131,16 @@ public class HomepageGui {
         buttonBox.getChildren().addAll(championListButton, teamGenButton, playerStatsButton, creditsButton);
 
         layout.getChildren().addAll(welcomeSection, buttonBox);
-        root.setCenter(layout);
 
-        Scene scene = new Scene(root, 1600, 1200);
+
+        ScrollPane scrollPane = new ScrollPane(layout);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setStyle("-fx-background: #0a1428; -fx-background-color: #0a1428;");
+
+        root.setCenter(scrollPane);
+
+       // Scene scene = new Scene(root, 1600, 1200);
+        Scene scene = new Scene(root, 1200, 900);
         primaryStage.setTitle("LoL Stats Tracker");
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -194,7 +203,8 @@ public class HomepageGui {
         layout.getChildren().addAll(title, placeholder);
         root.setCenter(layout);
 
-        Scene scene = new Scene(root, 1600, 1200);
+       // Scene scene = new Scene(root, 1600, 1200);
+        Scene scene = new Scene(root, 1200, 900);
         primaryStage.setScene(scene);
     }
 
@@ -217,7 +227,8 @@ public class HomepageGui {
         layout.getChildren().addAll(title, placeholder);
         root.setCenter(layout);
 
-        Scene scene = new Scene(root, 1600, 1200);
+       //Scene scene = new Scene(root, 1600, 1200);
+        Scene scene = new Scene(root, 1200, 900);
         primaryStage.setScene(scene);
     }
 
@@ -240,7 +251,8 @@ public class HomepageGui {
         layout.getChildren().addAll(title, placeholder);
         root.setCenter(layout);
 
-        Scene scene = new Scene(root, 1600, 1200);
+       // Scene scene = new Scene(root, 1600, 1200);
+        Scene scene = new Scene(root, 1200, 900);
         primaryStage.setScene(scene);
     }
 
@@ -279,7 +291,8 @@ public class HomepageGui {
         layout.getChildren().addAll(title, creditsContent);
         root.setCenter(layout);
 
-        Scene scene = new Scene(root, 1600, 1200);
+       // Scene scene = new Scene(root, 1600, 1200);
+        Scene scene = new Scene(root, 1200, 900);
         primaryStage.setScene(scene);
     }
 }
