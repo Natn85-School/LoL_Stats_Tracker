@@ -1,6 +1,10 @@
 package com.lol_stats_tracker.api;
+
+
+import com.google.gson.Gson;
 import com.lol_stats_tracker.api.ApiConfig;
 import java.net.HttpURLConnection;
+import com.lol_stats_tracker.model.Player;
 import java.net.ResponseCache;
 import java.net.URL;
 import java.io.BufferedReader;
@@ -44,7 +48,13 @@ public class TestApi
                     response.append(line);
                 }
                 in.close();
-                System.out.println("Responce : " + response.toString());
+
+                    Gson gson = new Gson();
+                    Player player = gson.fromJson(response.toString(),Player.class);
+                System.out.println("=== Информация об игроке ===");
+                System.out.println("Имя: " + player.getGameName());
+                System.out.println("Тег: " + player.getTagLine());
+                System.out.println("PUUID: " + player.getPuuid());
 
             }
             else
