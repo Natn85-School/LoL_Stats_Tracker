@@ -1,2 +1,4 @@
+com\lol_stats_tracker\api\TestApi.class
 com\lol_stats_tracker\Main.class
+com\lol_stats_tracker\api\ApiConfig.class
 com\lol_stats_tracker\gui\HomepageGui.class
