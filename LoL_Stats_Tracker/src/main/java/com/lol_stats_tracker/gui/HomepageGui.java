@@ -249,42 +249,6 @@ public class HomepageGui
 
     private void showCreditsScreen()
     {
-        BorderPane root = new BorderPane();
-        root.setStyle("-fx-background-color: #0a1428;");
-
-        root.setTop(createTopBanner(true));
-
-        VBox layout = new VBox(40);
-        layout.setAlignment(Pos.CENTER);
-        layout.setPadding(new Insets(80));
-
-        Label title = new Label("Credits");
-        title.setStyle("-fx-font-size: 56px; -fx-font-weight: bold; -fx-text-fill: #c89b3c;");
-
-        VBox creditsContent = new VBox(30);
-        creditsContent.setAlignment(Pos.CENTER);
-
-        Label developed = new Label("Developed by: [Your Name]");
-        developed.setStyle("-fx-font-size: 32px; -fx-text-fill: #a09b8c;");
-
-        Label dataSource = new Label("Champion Images: Community Dragon");
-        dataSource.setStyle("-fx-font-size: 28px; -fx-text-fill: #a09b8c;");
-
-        Label apiSource = new Label("Player Data: Riot Games API");
-        apiSource.setStyle("-fx-font-size: 28px; -fx-text-fill: #a09b8c;");
-
-        Label disclaimer = new Label("LoL Stats Tracker isn't endorsed by Riot Games\nand doesn't reflect the views or opinions of Riot Games\nor anyone officially involved in producing or managing League of Legends.");
-        disclaimer.setStyle("-fx-font-size: 24px; -fx-text-fill: #5b5a56; -fx-text-alignment: center;");
-        disclaimer.setWrapText(true);
-        disclaimer.setMaxWidth(800);
-
-        creditsContent.getChildren().addAll(developed, dataSource, apiSource, disclaimer);
-
-        layout.getChildren().addAll(title, creditsContent);
-        root.setCenter(layout);
-
-        // Scene scene = new Scene(root, 1600, 1200);
-        Scene scene = new Scene(root, 1200, 900);
-        primaryStage.setScene(scene);
+        new CreditsGui(primaryStage);
     }
 }
