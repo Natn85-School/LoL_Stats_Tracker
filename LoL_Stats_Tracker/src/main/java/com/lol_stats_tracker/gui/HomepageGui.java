@@ -13,24 +13,28 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.ScrollPane;
 
-public class HomepageGui {
+public class HomepageGui
+{
 
     private Stage primaryStage;
 
-    public HomepageGui(Stage primaryStage) {
+    public HomepageGui(Stage primaryStage)
+    {
         this.primaryStage = primaryStage;
         primaryStage.setResizable(true);
         showHomepage();
     }
 
-    private HBox createTopBanner(boolean showBackButton) {
+    private HBox createTopBanner(boolean showBackButton)
+    {
         HBox banner = new HBox();
         banner.setAlignment(Pos.CENTER_LEFT);
         banner.setPadding(new Insets(30, 40, 30, 40));
         banner.setStyle("-fx-background-color: #010a13; -fx-border-color: #c89b3c; -fx-border-width: 0 0 2 0;");
         banner.setMinHeight(140);
 
-        if (showBackButton) {
+        if (showBackButton)
+        {
             Button backButton = new Button("← Back");
             backButton.setStyle(
                     "-fx-background-color: transparent;" +
@@ -71,13 +75,15 @@ public class HomepageGui {
         HBox logoBox = new HBox(10);
         logoBox.setAlignment(Pos.CENTER);
 
-        try {
+        try
+        {
             Image logo = new Image(getClass().getResourceAsStream("/League_of_Legends_logo.png"));
             ImageView logoView = new ImageView(logo);
             logoView.setFitHeight(80);
             logoView.setPreserveRatio(true);
             logoBox.getChildren().add(logoView);
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             e.printStackTrace();
             Label appName = new Label("LoL Stats Tracker");
             appName.setStyle("-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #c89b3c;");
@@ -93,7 +99,8 @@ public class HomepageGui {
         return banner;
     }
 
-    private void showHomepage() {
+    private void showHomepage()
+    {
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-color: #0a1428;");
 
@@ -139,14 +146,15 @@ public class HomepageGui {
 
         root.setCenter(scrollPane);
 
-       // Scene scene = new Scene(root, 1600, 1200);
+        // Scene scene = new Scene(root, 1600, 1200);
         Scene scene = new Scene(root, 1200, 900);
         primaryStage.setTitle("LoL Stats Tracker");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    private Button createStyledButton(String text, String color) {
+    private Button createStyledButton(String text, String color)
+    {
         Button button = new Button(text);
         button.setStyle(
                 "-fx-background-color: " + color + ";" +
@@ -184,31 +192,13 @@ public class HomepageGui {
         return button;
     }
 
-    private void showChampionListScreen() {
-        BorderPane root = new BorderPane();
-        root.setStyle("-fx-background-color: #0a1428;");
-
-        root.setTop(createTopBanner(true));
-
-        VBox layout = new VBox(40);
-        layout.setAlignment(Pos.CENTER);
-        layout.setPadding(new Insets(80));
-
-        Label title = new Label("Champion List");
-        title.setStyle("-fx-font-size: 56px; -fx-font-weight: bold; -fx-text-fill: #c89b3c;");
-
-        Label placeholder = new Label("Champion grid with images coming soon...");
-        placeholder.setStyle("-fx-font-size: 32px; -fx-text-fill: #a09b8c;");
-
-        layout.getChildren().addAll(title, placeholder);
-        root.setCenter(layout);
-
-       // Scene scene = new Scene(root, 1600, 1200);
-        Scene scene = new Scene(root, 1200, 900);
-        primaryStage.setScene(scene);
+    private void showChampionListScreen()
+    {
+        new ChampionListGui(primaryStage);
     }
 
-    private void showTeamGeneratorScreen() {
+    private void showTeamGeneratorScreen()
+    {
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-color: #0a1428;");
 
@@ -227,12 +217,13 @@ public class HomepageGui {
         layout.getChildren().addAll(title, placeholder);
         root.setCenter(layout);
 
-       //Scene scene = new Scene(root, 1600, 1200);
+        //Scene scene = new Scene(root, 1600, 1200);
         Scene scene = new Scene(root, 1200, 900);
         primaryStage.setScene(scene);
     }
 
-    private void showPlayerStatsScreen() {
+    private void showPlayerStatsScreen()
+    {
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-color: #0a1428;");
 
@@ -251,12 +242,13 @@ public class HomepageGui {
         layout.getChildren().addAll(title, placeholder);
         root.setCenter(layout);
 
-       // Scene scene = new Scene(root, 1600, 1200);
+        // Scene scene = new Scene(root, 1600, 1200);
         Scene scene = new Scene(root, 1200, 900);
         primaryStage.setScene(scene);
     }
 
-    private void showCreditsScreen() {
+    private void showCreditsScreen()
+    {
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-color: #0a1428;");
 
@@ -291,7 +283,7 @@ public class HomepageGui {
         layout.getChildren().addAll(title, creditsContent);
         root.setCenter(layout);
 
-       // Scene scene = new Scene(root, 1600, 1200);
+        // Scene scene = new Scene(root, 1600, 1200);
         Scene scene = new Scene(root, 1200, 900);
         primaryStage.setScene(scene);
     }

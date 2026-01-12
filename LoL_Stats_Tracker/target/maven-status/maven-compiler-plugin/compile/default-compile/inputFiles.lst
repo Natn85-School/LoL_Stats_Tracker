@@ -1,4 +1,10 @@
-C:\Eclipse Project\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\api\ApiConfig.java
-C:\Eclipse Project\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\api\TestApi.java
-C:\Eclipse Project\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\gui\HomepageGui.java
-C:\Eclipse Project\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\Main.java
+C:\Users\felekenatnael\IdeaProjects\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\api\ApiConfig.java
+C:\Users\felekenatnael\IdeaProjects\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\api\ChampionDataService.java
+C:\Users\felekenatnael\IdeaProjects\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\api\TestApi.java
+C:\Users\felekenatnael\IdeaProjects\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\controller\ChampionController.java
+C:\Users\felekenatnael\IdeaProjects\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\gui\ChampionListGui.java
+C:\Users\felekenatnael\IdeaProjects\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\gui\HomepageGui.java
+C:\Users\felekenatnael\IdeaProjects\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\Main.java
+C:\Users\felekenatnael\IdeaProjects\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\model\Champion.java
+C:\Users\felekenatnael\IdeaProjects\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\model\ChampionMastery.java
+C:\Users\felekenatnael\IdeaProjects\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\model\Player.java
