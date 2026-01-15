@@ -25,11 +25,23 @@ public class ChampionListGui {
     private TextField searchField;
     private Label countLabel;
     private ChampionController championController;
+    private static Image loadingGif;
 
     public ChampionListGui(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.championController = new ChampionController(this::handleChampionClick);
+        loadLoadingGif();
         show();
+    }
+
+    private static void loadLoadingGif() {
+        if (loadingGif == null) {
+            try {
+                loadingGif = new Image("/loading.gif");
+            } catch (Exception e) {
+                System.out.println("Loading GIF not found, using placeholder");
+            }
+        }
     }
 
     private HBox createTopBanner() {
@@ -151,7 +163,7 @@ public class ChampionListGui {
         contentArea.getChildren().add(scrollPane);
         root.setCenter(contentArea);
 
-        Scene scene = new Scene(root, 900, 700);
+        Scene scene = new Scene(root, 1200, 900);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Champion List - LoL Stats Tracker");
     }
@@ -185,14 +197,16 @@ public class ChampionListGui {
         championImage.setFitHeight(80);
         championImage.setPreserveRatio(true);
 
-        try {
-            Image image = new Image(champion.getImageUrl(), true);
-            championImage.setImage(image);
-        } catch (Exception e) {
-            Label placeholder = new Label("?");
-            placeholder.setStyle("-fx-font-size: 40px; -fx-text-fill: #785a28;");
-            card.getChildren().add(placeholder);
+        if (loadingGif != null) {
+            championImage.setImage(loadingGif);
         }
+
+        Image image = new Image(champion.getImageUrl(), true);
+        image.progressProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal.doubleValue() >= 1.0) {
+                championImage.setImage(image);
+            }
+        });
 
         Label nameLabel = new Label(champion.getName());
         nameLabel.setStyle(
@@ -236,6 +250,5 @@ public class ChampionListGui {
     }
 
     private void handleChampionClick(Champion champion) {
-        // TODO: Show champion details screen
     }
 }

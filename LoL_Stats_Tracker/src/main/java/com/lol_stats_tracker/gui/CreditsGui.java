@@ -81,7 +81,6 @@ public class CreditsGui {
         }
 
         banner.getChildren().add(logoBox);
-
         HBox spacer2 = new HBox();
         HBox.setHgrow(spacer2, javafx.scene.layout.Priority.ALWAYS);
         banner.getChildren().add(spacer2);
@@ -108,11 +107,15 @@ public class CreditsGui {
         Label developersTitle = new Label("Developed by:");
         developersTitle.setStyle("-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #c89b3c;");
 
-        Label developer1 = new Label("Natnael Feleke");
-        developer1.setStyle("-fx-font-size: 28px; -fx-text-fill: #a09b8c;");
+        Label developerN = new Label("Natnael Feleke");
+        developerN.setStyle("-fx-font-size: 28px; -fx-text-fill: #a09b8c;");
 
-        Label developer2 = new Label("Artur Labinstev");
-        developer2.setStyle("-fx-font-size: 28px; -fx-text-fill: #a09b8c;");
+        Label developerA = new Label("Artur Labinstev");
+        developerA.setStyle("-fx-font-size: 28px; -fx-text-fill: #a09b8c;");
+
+        HBox developersRow = new HBox(40);
+        developersRow.setAlignment(Pos.CENTER);
+        developersRow.getChildren().addAll(developerN, developerA);
 
         Label dataSourceTitle = new Label("Data Sources:");
         dataSourceTitle.setStyle("-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #c89b3c;");
@@ -123,6 +126,7 @@ public class CreditsGui {
         Label apiSource = new Label("Player Data: Riot Games API");
         apiSource.setStyle("-fx-font-size: 28px; -fx-text-fill: #a09b8c;");
 
+        //wir müssen ein disclaimer wegen den Regeln von Riot nutzen
         Label disclaimer = new Label("LoL Stats Tracker isn't endorsed by Riot Games\nand doesn't reflect the views or opinions of Riot Games\nor anyone officially involved in producing or managing League of Legends.");
         disclaimer.setStyle("-fx-font-size: 24px; -fx-text-fill: #5b5a56; -fx-text-alignment: center;");
         disclaimer.setWrapText(true);
@@ -130,13 +134,13 @@ public class CreditsGui {
 
         creditsContent.getChildren().addAll(
                 developersTitle,
-                developer1,
-                developer2,
+                developersRow,
                 dataSourceTitle,
                 dataSource,
                 apiSource,
                 disclaimer
         );
+
 
         layout.getChildren().addAll(title, creditsContent);
         root.setCenter(layout);
