@@ -1,6 +1,6 @@
 package com.lol_stats_tracker.gui;
 
-import com.lol_stats_tracker.controller.StatsController;
+import com.lol_stats_tracker.controller.PlayerStatsController;
 import com.lol_stats_tracker.model.ChampionMastery;
 import com.lol_stats_tracker.model.Player;
 import javafx.application.Platform;
@@ -17,16 +17,16 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.util.List;
 
-public class PlayerStatsGui
-{
+public class PlayerStatsGui {
 
     private Stage stage;
-    private StatsController controller;
+    private PlayerStatsController controller;
+    private Label resultsLabel;
+    private VBox resultsBox;
 
-    public PlayerStatsGui(Stage stage)
-    {
+    public PlayerStatsGui(Stage stage) {
         this.stage = stage;
-        this.controller = new StatsController();
+        this.controller = new PlayerStatsController(this::handlePlayerFound);
         showPlayerStatsScreen();
     }
 
@@ -94,7 +94,6 @@ public class PlayerStatsGui
         layout.setAlignment(Pos.CENTER);
         layout.setPadding(new Insets(80));
 
-        // Поля ввода
         VBox inputBox = new VBox(20);
         inputBox.setAlignment(Pos.CENTER);
         inputBox.setMaxWidth(600);
@@ -127,8 +126,7 @@ public class PlayerStatsGui
 
         Button searchButton = createSearchButton();
 
-        // Область для результатов
-        VBox resultsBox = new VBox(20);
+        resultsBox = new VBox(20);
         resultsBox.setAlignment(Pos.CENTER);
         resultsBox.setStyle(
                 "-fx-background-color: #1e2328;" +
@@ -138,14 +136,13 @@ public class PlayerStatsGui
         resultsBox.setMaxWidth(800);
         resultsBox.setVisible(false);
 
-        Label resultsLabel = new Label();
+        resultsLabel = new Label();
         resultsLabel.setStyle("-fx-font-size: 20px; -fx-text-fill: #f0e6d2;");
         resultsLabel.setWrapText(true);
 
         resultsBox.getChildren().add(resultsLabel);
 
-        // Обработчик кнопки
-        searchButton.setOnAction(e -> handleSearch(nameField, tagField, resultsBox, resultsLabel));
+        searchButton.setOnAction(e -> handleSearch(nameField.getText().trim(), tagField.getText().trim()));
 
         inputBox.getChildren().addAll(nameLabel, nameField, tagLabel, tagField, searchButton);
 
@@ -200,14 +197,9 @@ public class PlayerStatsGui
         return button;
     }
 
-    private void handleSearch(TextField nameField, TextField tagField, VBox resultsBox, Label resultsLabel) {
-        String name = nameField.getText().trim();
-        String tag = tagField.getText().trim();
-
-        if (name.isEmpty() || tag.isEmpty()) {
-            resultsLabel.setText("Please enter both name and tag!");
-            resultsLabel.setStyle("-fx-font-size: 20px; -fx-text-fill: #ff4444;");
-            resultsBox.setVisible(true);
+    private void handleSearch(String name, String tag) {
+        if (!controller.validateInput(name, tag)) {
+            showError("Please enter both name and tag!");
             return;
         }
 
@@ -215,36 +207,27 @@ public class PlayerStatsGui
         resultsLabel.setStyle("-fx-font-size: 20px; -fx-text-fill: #c89b3c;");
         resultsBox.setVisible(true);
 
-        // Поиск в отдельном потоке
-        new Thread(() ->
-        {
-            Player player = controller.searchPlayer(name, tag);
+        controller.searchPlayer(name, tag);
+    }
 
-            Platform.runLater(() -> {
-                if (player == null) {
-                    resultsLabel.setText("Player not found! Check the name and tag.");
-                    resultsLabel.setStyle("-fx-font-size: 20px; -fx-text-fill: #ff4444;");
-                } else {
-                    List<ChampionMastery> champions = controller.getTopChampions(player.getPuuid(), 10);
+    private void handlePlayerFound(Player player) {
+        Platform.runLater(() -> {
+            if (player == null) {
+                showError("Player not found! Check the name and tag.");
+                return;
+            }
 
-                    StringBuilder result = new StringBuilder();
-                    result.append("═══════════════════════════\n");
-                    result.append("Player: ").append(player.getGameName())
-                            .append("#").append(player.getTagLine()).append("\n");
-                    result.append("Level: ").append(player.getSummonerLevel()).append("\n");
-                    result.append("═══════════════════════════\n\n");
-                    result.append("Top 10 Champions:\n\n");
+            List<ChampionMastery> champions = controller.getTopChampions(player.getPuuid(), 10);
+            String formattedStats = controller.formatPlayerStats(player, champions);
 
-                    for (int i = 0; i < champions.size(); i++) {
-                        ChampionMastery m = champions.get(i);
-                        result.append(String.format("%2d. Champion Name: %s | Level: %d | Points: %,d\n",
-                                i + 1, m.getChampionName(), m.getChampionLevel(), m.getChampionPoints()));
-                    }
+            resultsLabel.setText(formattedStats);
+            resultsLabel.setStyle("-fx-font-size: 18px; -fx-text-fill: #f0e6d2;");
+        });
+    }
 
-                    resultsLabel.setText(result.toString());
-                    resultsLabel.setStyle("-fx-font-size: 18px; -fx-text-fill: #f0e6d2;");
-                }
-            });
-        }).start();
+    private void showError(String message) {
+        resultsLabel.setText(message);
+        resultsLabel.setStyle("-fx-font-size: 20px; -fx-text-fill: #ff4444;");
+        resultsBox.setVisible(true);
     }
 }

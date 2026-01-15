@@ -103,8 +103,6 @@ public class RiotApiClient {
                 mastery.setChampionPoints(object.get("championPoints").getAsLong());
 
                 champlist.add(mastery);
-
-
             }
 
 
@@ -132,7 +130,6 @@ private static String makeRequest(String urlString)
         if (code != 200) {
             System.out.println("fehler");
             return null;
-
         }
 
 
@@ -147,7 +144,6 @@ private static String makeRequest(String urlString)
         }
         in.close();
         return response.toString();
-
     }
     catch (Exception e)
     {
