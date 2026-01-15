@@ -4,8 +4,10 @@ package com.lol_stats_tracker.api;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.lol_stats_tracker.model.Champion;
 import com.lol_stats_tracker.model.Player;
 import com.lol_stats_tracker.model.ChampionMastery;
+import com.lol_stats_tracker.api.ChampionDataService;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -69,7 +71,8 @@ public class RiotApiClient {
     }
 
     // top champ
-    public static List<ChampionMastery> getTopChampions(String puuid, int count) {
+    public static List<ChampionMastery> getTopChampions(String puuid, int count)
+    {
         List<ChampionMastery> champlist = new ArrayList<>();
 
         try {
@@ -82,11 +85,20 @@ public class RiotApiClient {
             }
             JsonArray array = gson.fromJson(json, JsonArray.class);
 
-            for (int i = 0; i < array.size(); i++) {
+            for (int i = 0; i < array.size(); i++)
+            {
+
+
                 JsonObject object = array.get(i).getAsJsonObject();
                 ChampionMastery mastery = new ChampionMastery();
 
-                mastery.setChampionId(object.get("championId").getAsInt());
+
+                int championId = object.get("championId").getAsInt();
+
+                mastery.setChampionId(championId);
+                String name = ChampionDataService.getChampionNameByID(championId);
+                mastery.setChampionName(name);
+
                 mastery.setChampionLevel(object.get("championLevel").getAsInt());
                 mastery.setChampionPoints(object.get("championPoints").getAsLong());
 

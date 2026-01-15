@@ -224,27 +224,7 @@ public class HomepageGui
 
     private void showPlayerStatsScreen()
     {
-        BorderPane root = new BorderPane();
-        root.setStyle("-fx-background-color: #0a1428;");
-
-        root.setTop(createTopBanner(true));
-
-        VBox layout = new VBox(40);
-        layout.setAlignment(Pos.CENTER);
-        layout.setPadding(new Insets(80));
-
-        Label title = new Label("Player Stats Viewer");
-        title.setStyle("-fx-font-size: 56px; -fx-font-weight: bold; -fx-text-fill: #c89b3c;");
-
-        Label placeholder = new Label("Player statistics coming soon...");
-        placeholder.setStyle("-fx-font-size: 32px; -fx-text-fill: #a09b8c;");
-
-        layout.getChildren().addAll(title, placeholder);
-        root.setCenter(layout);
-
-        // Scene scene = new Scene(root, 1600, 1200);
-        Scene scene = new Scene(root, 1200, 900);
-        primaryStage.setScene(scene);
+        new PlayerStatsGui(primaryStage);
     }
 
     private void showCreditsScreen()

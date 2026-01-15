@@ -8,7 +8,7 @@ import java.util.List;
 public class ChampionDataService
 {
 
-    private final Champion[] championsData = {
+    private static final Champion[] championsData = {
             new Champion("1", "Annie"), new Champion("2", "Olaf"), new Champion("3", "Galio"), new Champion("4", "Twisted Fate"),
             new Champion("5", "Xin Zhao"), new Champion("6", "Urgot"), new Champion("7", "LeBlanc"), new Champion("8", "Vladimir"),
             new Champion("9", "Fiddlesticks"), new Champion("10", "Kayle"), new Champion("11", "Master Yi"), new Champion("12", "Alistar"),
@@ -63,8 +63,22 @@ public class ChampionDataService
         return champions;
     }
 
-    public int getChampionCount()
+    public int  getChampionCount()
     {
         return championsData.length;
     }
+
+    public static  String getChampionNameByID(int championID)
+    {
+        for(Champion champion : championsData)
+        {
+            if(Integer.parseInt(champion.getId()) == championID)
+            {
+                return champion.getName();
+            }
+
+        }
+        return "Unknown Champ";
+    }
+
 }

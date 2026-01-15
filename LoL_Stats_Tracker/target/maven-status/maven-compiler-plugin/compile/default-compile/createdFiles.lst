@@ -1,12 +1,13 @@
 com\lol_stats_tracker\controller\ChampionController.class
-com\lol_stats_tracker\api\TestApi.class
 com\lol_stats_tracker\Main.class
 com\lol_stats_tracker\api\RiotApiClient.class
 com\lol_stats_tracker\api\ApiConfig.class
 com\lol_stats_tracker\api\ChampionDataService.class
 com\lol_stats_tracker\gui\ChampionListGui.class
+com\lol_stats_tracker\gui\PlayerStatsGui.class
 com\lol_stats_tracker\model\Champion.class
 com\lol_stats_tracker\model\ChampionMastery.class
+com\lol_stats_tracker\controller\StatsController.class
 com\lol_stats_tracker\gui\CreditsGui.class
 com\lol_stats_tracker\gui\HomepageGui.class
 com\lol_stats_tracker\model\Player.class
