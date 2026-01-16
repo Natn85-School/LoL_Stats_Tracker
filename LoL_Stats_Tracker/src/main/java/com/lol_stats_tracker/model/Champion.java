@@ -1,20 +1,34 @@
 package com.lol_stats_tracker.model;
 
-public class Champion {
+public class Champion
+{
     private String id;
     private String name;
+    private String rolle ;
 
-    public Champion(String id, String name) {
+
+    public Champion(String id, String name,String rolle)
+    {
         this.id = id;
         this.name = name;
+        this.rolle = rolle ;
+
     }
 
-    public String getId() {
+    public String getId()
+    {
         return id;
     }
 
-    public String getName() {
+    public String getName()
+    {
+
         return name;
+    }
+
+    public String getRolle()
+    {
+        return rolle ;
     }
 
     public String getImageUrl() {

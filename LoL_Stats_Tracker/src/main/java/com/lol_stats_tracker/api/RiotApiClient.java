@@ -24,7 +24,8 @@ public class RiotApiClient {
 
     public static final Gson gson = new Gson();
 
-    public static Player getPlayer(String gameName, String tagline) {
+    public static Player getPlayer(String gameName, String tagline)
+    {
         try {
             String urlString = "https://" + ApiConfig.REGION + ".api.riotgames.com" + "/riot/account/v1/accounts/by-riot-id/" +
                     gameName + "/" + tagline;
@@ -46,7 +47,8 @@ public class RiotApiClient {
     }
 
     //summ inffo
-    public static void getSumonnerInfo(Player player) {
+    public static void getSummonnerInfo(Player player)
+    {
         try {
 
             String urlString = "https://" + ApiConfig.PLATFORM + ".api.riotgames.com" + "/lol/summoner/v4/summoners/by-puuid/" + player.getPuuid();

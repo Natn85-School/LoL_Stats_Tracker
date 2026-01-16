@@ -1,6 +1,7 @@
 package com.lol_stats_tracker.gui;
 
-import com.lol_stats_tracker.controller.PlayerStatsController;
+
+import com.lol_stats_tracker.controller.StatsController;
 import com.lol_stats_tracker.model.ChampionMastery;
 import com.lol_stats_tracker.model.Player;
 import javafx.application.Platform;
@@ -17,20 +18,23 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.util.List;
 
-public class PlayerStatsGui {
+public class PlayerStatsGui
+{
 
     private Stage stage;
-    private PlayerStatsController controller;
+    private StatsController controller;
     private Label resultsLabel;
     private VBox resultsBox;
 
-    public PlayerStatsGui(Stage stage) {
+    public PlayerStatsGui(Stage stage)
+    {
         this.stage = stage;
-        this.controller = new PlayerStatsController(this::handlePlayerFound);
+        this.controller = new StatsController();
         showPlayerStatsScreen();
     }
 
-    private HBox createTopBanner() {
+    private HBox createTopBanner()
+    {
         HBox banner = new HBox();
         banner.setAlignment(Pos.CENTER_LEFT);
         banner.setPadding(new Insets(30, 40, 30, 40));
@@ -197,8 +201,10 @@ public class PlayerStatsGui {
         return button;
     }
 
-    private void handleSearch(String name, String tag) {
-        if (!controller.validateInput(name, tag)) {
+    private void handleSearch(String name, String tag)
+    {
+        if (!controller.validateInput(name, tag))
+        {
             showError("Please enter both name and tag!");
             return;
         }
@@ -207,12 +213,18 @@ public class PlayerStatsGui {
         resultsLabel.setStyle("-fx-font-size: 20px; -fx-text-fill: #c89b3c;");
         resultsBox.setVisible(true);
 
-        controller.searchPlayer(name, tag);
+     new Thread(() ->  // -> == new Runnable() / @Override /  public void run() // eine anonyme klasse mit "runnable" funkt ,dass sagt was diese Thread ausführen soll
+     {
+         Player player = controller.searchPlayer(name, tag);
+         handlePlayerFound(player);
+     }).start();
     }
 
     private void handlePlayerFound(Player player) {
-        Platform.runLater(() -> {
-            if (player == null) {
+        Platform.runLater(() ->
+        {
+            if (player == null)
+            {
                 showError("Player not found! Check the name and tag.");
                 return;
             }
