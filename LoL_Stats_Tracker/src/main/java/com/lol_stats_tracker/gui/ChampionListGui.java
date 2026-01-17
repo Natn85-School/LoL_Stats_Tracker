@@ -239,7 +239,8 @@ public class ChampionListGui {
         return card;
     }
 
-    private void filterChampions(String searchText) {
+    private void filterChampions(String searchText)
+    {
         List<Champion> filtered = championController.filterChampions(searchText);
         countLabel.setText(filtered.size() + " Champions");
         populateChampions(filtered);

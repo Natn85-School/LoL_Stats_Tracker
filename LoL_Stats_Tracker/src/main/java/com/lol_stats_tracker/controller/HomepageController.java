@@ -26,6 +26,7 @@ public class HomepageController {
             case "Champion List" -> new com.lol_stats_tracker.gui.ChampionListGui(stage);
             case "Player Stats" -> new com.lol_stats_tracker.gui.PlayerStatsGui(stage);
             case "Credits" -> new com.lol_stats_tracker.gui.CreditsGui(stage);
+            case "Team Generator" -> new com.lol_stats_tracker.gui.TeamGeneratorGui(stage);
         }
     }
 }

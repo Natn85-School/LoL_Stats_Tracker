@@ -1,17 +1,19 @@
-C:\Users\labintsevartur\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\api\ApiConfig.java
-C:\Users\labintsevartur\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\api\ChampionDataService.java
-C:\Users\labintsevartur\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\api\RiotApiClient.java
-C:\Users\labintsevartur\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\controller\ChampionController.java
-C:\Users\labintsevartur\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\controller\HomepageController.java
-C:\Users\labintsevartur\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\controller\StatsController.java
-C:\Users\labintsevartur\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\controller\TeamController.java
-C:\Users\labintsevartur\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\gui\ChampionListGui.java
-C:\Users\labintsevartur\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\gui\CreditsGui.java
-C:\Users\labintsevartur\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\gui\HomepageGui.java
-C:\Users\labintsevartur\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\gui\PlayerStatsGui.java
-C:\Users\labintsevartur\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\gui\TeamGeneratorGui.java
-C:\Users\labintsevartur\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\Main.java
-C:\Users\labintsevartur\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\model\Champion.java
-C:\Users\labintsevartur\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\model\ChampionMastery.java
-C:\Users\labintsevartur\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\model\Player.java
-C:\Users\labintsevartur\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\model\Team.java
+C:\Eclipse Project\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\api\ApiConfig.java
+C:\Eclipse Project\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\api\ChampionDataService.java
+C:\Eclipse Project\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\api\RiotApiClient.java
+C:\Eclipse Project\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\controller\ChampionController.java
+C:\Eclipse Project\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\controller\HomepageController.java
+C:\Eclipse Project\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\controller\StatsController.java
+C:\Eclipse Project\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\controller\TeamGeneratorController.java
+C:\Eclipse Project\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\gui\ChampionListGui.java
+C:\Eclipse Project\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\gui\CreditsGui.java
+C:\Eclipse Project\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\gui\HomepageGui.java
+C:\Eclipse Project\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\gui\PlayerStatsGui.java
+C:\Eclipse Project\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\gui\TeamGeneratorGui.java
+C:\Eclipse Project\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\Main.java
+C:\Eclipse Project\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\model\Champion.java
+C:\Eclipse Project\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\model\ChampionMastery.java
+C:\Eclipse Project\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\model\Player.java
+C:\Eclipse Project\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\model\SearchHistory.java
+C:\Eclipse Project\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\model\Team.java
+C:\Eclipse Project\LoL_Stats_Tracker\LoL_Stats_Tracker\src\main\java\com\lol_stats_tracker\utils\SearchHistoryHandler.java

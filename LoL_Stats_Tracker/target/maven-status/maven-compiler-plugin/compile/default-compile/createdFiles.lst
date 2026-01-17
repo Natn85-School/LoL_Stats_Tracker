@@ -2,7 +2,7 @@ com\lol_stats_tracker\controller\ChampionController.class
 com\lol_stats_tracker\controller\HomepageController.class
 com\lol_stats_tracker\gui\TeamGeneratorGui.class
 com\lol_stats_tracker\Main.class
-com\lol_stats_tracker\controller\TeamController.class
+com\lol_stats_tracker\utils\SearchHistoryHandler.class
 com\lol_stats_tracker\api\RiotApiClient.class
 com\lol_stats_tracker\api\ApiConfig.class
 com\lol_stats_tracker\api\ChampionDataService.class
@@ -10,6 +10,9 @@ com\lol_stats_tracker\gui\ChampionListGui.class
 com\lol_stats_tracker\model\Team.class
 com\lol_stats_tracker\gui\PlayerStatsGui.class
 com\lol_stats_tracker\model\Champion.class
+com\lol_stats_tracker\utils\SearchHistoryHandler$1.class
+com\lol_stats_tracker\model\SearchHistory.class
+com\lol_stats_tracker\controller\TeamGeneratorController.class
 com\lol_stats_tracker\model\ChampionMastery.class
 com\lol_stats_tracker\controller\StatsController.class
 com\lol_stats_tracker\gui\CreditsGui.class
