@@ -3,14 +3,13 @@ package com.lol_stats_tracker.controller;
 import com.lol_stats_tracker.api.RiotApiClient;
 import com.lol_stats_tracker.model.ChampionMastery;
 import com.lol_stats_tracker.model.Player;
+import com.lol_stats_tracker.utils.SearchHistoryHandler;
+import com.lol_stats_tracker.model.SearchHistory;
 import java.util.List;
 
 
 public class StatsController
 {
-
-
-
         public Player searchPlayer (String gameName,String tagLine)
         {
             Player player = RiotApiClient.getPlayer(gameName,tagLine);
@@ -45,8 +44,18 @@ public class StatsController
             result.append(String.format("%2d. Champion Name: %s | Level: %d | Points: %,d\n",
                     i + 1, m.getChampionName(), m.getChampionLevel(), m.getChampionPoints()));
         }
-
         return result.toString();
+    }
+
+    public void saveSearch(String name, String tag)
+    {
+        SearchHistory history = new SearchHistory(name, tag);
+        SearchHistoryHandler.saveSearchHistory(history);
+    }
+
+    public List<SearchHistory> getSearchHistory()
+    {
+        return SearchHistoryHandler.loadSearchHistory();
     }
 
     public boolean validateInput(String name, String tag) {

@@ -1,6 +1,5 @@
 package com.lol_stats_tracker.gui;
 
-
 import com.lol_stats_tracker.controller.StatsController;
 import com.lol_stats_tracker.model.ChampionMastery;
 import com.lol_stats_tracker.model.Player;
@@ -88,7 +87,8 @@ public class PlayerStatsGui
         return banner;
     }
 
-    private void showPlayerStatsScreen() {
+    private void showPlayerStatsScreen()
+    {
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-color: #0a1428;");
 
@@ -130,6 +130,8 @@ public class PlayerStatsGui
 
         Button searchButton = createSearchButton();
 
+        VBox historyBox = createHistoryBox(nameField, tagField);
+
         resultsBox = new VBox(20);
         resultsBox.setAlignment(Pos.CENTER);
         resultsBox.setStyle(
@@ -150,7 +152,7 @@ public class PlayerStatsGui
 
         inputBox.getChildren().addAll(nameLabel, nameField, tagLabel, tagField, searchButton);
 
-        layout.getChildren().addAll(inputBox, resultsBox);
+        layout.getChildren().addAll(inputBox, historyBox, resultsBox);
 
         ScrollPane scrollPane = new ScrollPane(layout);
         scrollPane.setFitToWidth(true);
@@ -163,7 +165,47 @@ public class PlayerStatsGui
         stage.show();
     }
 
-    private Button createSearchButton() {
+    private VBox createHistoryBox(TextField nameField, TextField tagField)
+    {
+        VBox historyBox = new VBox(10);
+        historyBox.setAlignment(Pos.CENTER);
+        historyBox.setMaxWidth(600);
+
+        Label historyTitle = new Label("Recent Searches:");
+        historyTitle.setStyle("-fx-font-size: 18px; -fx-text-fill: #c89b3c;");
+
+        var history = controller.getSearchHistory();
+
+        if (history.isEmpty())
+        {
+            Label noHistory = new Label("No recent searches");
+            noHistory.setStyle("-fx-font-size: 14px; -fx-text-fill: #a09b8c;");
+            historyBox.getChildren().addAll(historyTitle, noHistory);
+        }
+        else
+        {
+            historyBox.getChildren().add(historyTitle);
+            for (var search : history)
+            {
+                Button historyBtn = new Button(search.toString());
+                historyBtn.setStyle("-fx-background-color: #1e2328; -fx-text-fill: #f0e6d2; -fx-font-size: 14px; -fx-padding: 8; -fx-background-radius: 5; -fx-cursor: hand;");
+                historyBtn.setMaxWidth(Double.MAX_VALUE);
+                historyBtn.setOnAction(e ->
+                {
+                    nameField.setText(search.getSummonerName());
+                    tagField.setText(search.getTag());
+                });
+                historyBtn.setOnMouseEntered(ev -> historyBtn.setStyle("-fx-background-color: #2a2f35; -fx-text-fill: #f0e6d2; -fx-font-size: 14px; -fx-padding: 8; -fx-background-radius: 5; -fx-cursor: hand;"));
+                historyBtn.setOnMouseExited(ev -> historyBtn.setStyle("-fx-background-color: #1e2328; -fx-text-fill: #f0e6d2; -fx-font-size: 14px; -fx-padding: 8; -fx-background-radius: 5; -fx-cursor: hand;"));
+                historyBox.getChildren().add(historyBtn);
+            }
+        }
+
+        return historyBox;
+    }
+
+    private Button createSearchButton()
+    {
         Button button = new Button("Search Player");
         button.setStyle(
                 "-fx-background-color: #c89b3c;" +
@@ -209,18 +251,21 @@ public class PlayerStatsGui
             return;
         }
 
+        controller.saveSearch(name, tag);
+
         resultsLabel.setText("Searching...");
         resultsLabel.setStyle("-fx-font-size: 20px; -fx-text-fill: #c89b3c;");
         resultsBox.setVisible(true);
 
-     new Thread(() ->  // -> == new Runnable() / @Override /  public void run() // eine anonyme klasse mit "runnable" funkt ,dass sagt was diese Thread ausführen soll
-     {
-         Player player = controller.searchPlayer(name, tag);
-         handlePlayerFound(player);
-     }).start();
+        new Thread(() ->
+        {
+            Player player = controller.searchPlayer(name, tag);
+            handlePlayerFound(player);
+        }).start();
     }
 
-    private void handlePlayerFound(Player player) {
+    private void handlePlayerFound(Player player)
+    {
         Platform.runLater(() ->
         {
             if (player == null)
@@ -229,7 +274,7 @@ public class PlayerStatsGui
                 return;
             }
 
-            List<ChampionMastery> champions = controller.getTopChampions(player.getPuuid(), 10);
+            List<ChampionMastery> champions = controller.getTopChampions(player.getPuuid(), 167);
             String formattedStats = controller.formatPlayerStats(player, champions);
 
             resultsLabel.setText(formattedStats);
@@ -237,7 +282,8 @@ public class PlayerStatsGui
         });
     }
 
-    private void showError(String message) {
+    private void showError(String message)
+    {
         resultsLabel.setText(message);
         resultsLabel.setStyle("-fx-font-size: 20px; -fx-text-fill: #ff4444;");
         resultsBox.setVisible(true);
