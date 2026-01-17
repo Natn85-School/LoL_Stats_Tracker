@@ -4,15 +4,12 @@ import com.lol_stats_tracker.api.ChampionDataService;
 import com.lol_stats_tracker.model.Champion;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 
 public class ChampionController {
     private ChampionDataService dataService;
-    private Consumer<Champion> championClickCallback;
 
-    public ChampionController(Consumer<Champion> championClickCallback) {
+    public ChampionController() {
         this.dataService = new ChampionDataService();
-        this.championClickCallback = championClickCallback;
     }
 
     public List<Champion> getAllChampions() {
@@ -39,10 +36,5 @@ public class ChampionController {
 
     public int getTotalChampionCount() {
         return dataService.getChampionCount();
-    }
-
-    public void handleChampionClick(Champion champion) {
-        System.out.println("Clicked on " + champion.getName() + " (ID: " + champion.getId() + ")");
-        championClickCallback.accept(champion);
     }
 }

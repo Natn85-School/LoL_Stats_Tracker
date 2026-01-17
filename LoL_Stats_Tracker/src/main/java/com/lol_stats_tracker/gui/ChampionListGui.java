@@ -29,7 +29,7 @@ public class ChampionListGui {
 
     public ChampionListGui(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        this.championController = new ChampionController(this::handleChampionClick);
+        this.championController = new ChampionController();
         loadLoadingGif();
         show();
     }
@@ -186,8 +186,7 @@ public class ChampionListGui {
                         "-fx-background-radius: 8;" +
                         "-fx-border-color: #785a28;" +
                         "-fx-border-radius: 8;" +
-                        "-fx-border-width: 2;" +
-                        "-fx-cursor: hand;"
+                        "-fx-border-width: 2;"
         );
         card.setMaxWidth(120);
         card.setMaxHeight(150);
@@ -220,13 +219,13 @@ public class ChampionListGui {
 
         card.getChildren().addAll(championImage, nameLabel);
 
+        // Hover effects only, no click handler
         card.setOnMouseEntered(e -> card.setStyle(
                 "-fx-background-color: #2a2f35;" +
                         "-fx-background-radius: 8;" +
                         "-fx-border-color: #c89b3c;" +
                         "-fx-border-radius: 8;" +
-                        "-fx-border-width: 2;" +
-                        "-fx-cursor: hand;"
+                        "-fx-border-width: 2;"
         ));
 
         card.setOnMouseExited(e -> card.setStyle(
@@ -234,11 +233,8 @@ public class ChampionListGui {
                         "-fx-background-radius: 8;" +
                         "-fx-border-color: #785a28;" +
                         "-fx-border-radius: 8;" +
-                        "-fx-border-width: 2;" +
-                        "-fx-cursor: hand;"
+                        "-fx-border-width: 2;"
         ));
-
-        card.setOnMouseClicked(e -> championController.handleChampionClick(champion));
 
         return card;
     }
@@ -247,8 +243,5 @@ public class ChampionListGui {
         List<Champion> filtered = championController.filterChampions(searchText);
         countLabel.setText(filtered.size() + " Champions");
         populateChampions(filtered);
-    }
-
-    private void handleChampionClick(Champion champion) {
     }
 }
