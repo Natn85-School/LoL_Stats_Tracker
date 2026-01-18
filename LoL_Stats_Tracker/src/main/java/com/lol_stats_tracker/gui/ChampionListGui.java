@@ -16,9 +16,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import com.lol_stats_tracker.controller.ChampionController;
 import com.lol_stats_tracker.model.Champion;
+
 import java.util.List;
 
-public class ChampionListGui {
+public class ChampionListGui
+{
 
     private Stage primaryStage;
     private FlowPane championGrid;
@@ -27,24 +29,30 @@ public class ChampionListGui {
     private ChampionController championController;
     private static Image loadingGif;
 
-    public ChampionListGui(Stage primaryStage) {
+    public ChampionListGui(Stage primaryStage)
+    {
         this.primaryStage = primaryStage;
         this.championController = new ChampionController();
         loadLoadingGif();
         show();
     }
 
-    private static void loadLoadingGif() {
-        if (loadingGif == null) {
-            try {
+    private static void loadLoadingGif()
+    {
+        if (loadingGif == null)
+        {
+            try
+            {
                 loadingGif = new Image("/loading.gif");
-            } catch (Exception e) {
+            } catch (Exception e)
+            {
                 System.out.println("Loading GIF not found, using placeholder");
             }
         }
     }
 
-    private HBox createTopBanner() {
+    private HBox createTopBanner()
+    {
         HBox banner = new HBox();
         banner.setAlignment(Pos.CENTER_LEFT);
         banner.setPadding(new Insets(15, 20, 15, 20));
@@ -90,13 +98,15 @@ public class ChampionListGui {
         HBox logoBox = new HBox(10);
         logoBox.setAlignment(Pos.CENTER);
 
-        try {
+        try
+        {
             Image logo = new Image(getClass().getResourceAsStream("/logo.png"));
             ImageView logoView = new ImageView(logo);
             logoView.setFitHeight(40);
             logoView.setPreserveRatio(true);
             logoBox.getChildren().add(logoView);
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             Label appName = new Label("LoL Stats Tracker");
             appName.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #c89b3c;");
             logoBox.getChildren().add(appName);
@@ -111,7 +121,8 @@ public class ChampionListGui {
         return banner;
     }
 
-    public void show() {
+    public void show()
+    {
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-color: #0a1428;");
 
@@ -168,16 +179,19 @@ public class ChampionListGui {
         primaryStage.setTitle("Champion List - LoL Stats Tracker");
     }
 
-    private void populateChampions(List<Champion> champions) {
+    private void populateChampions(List<Champion> champions)
+    {
         championGrid.getChildren().clear();
 
-        for (Champion champion : champions) {
+        for (Champion champion : champions)
+        {
             VBox championCard = createChampionCard(champion);
             championGrid.getChildren().add(championCard);
         }
     }
 
-    private VBox createChampionCard(Champion champion) {
+    private VBox createChampionCard(Champion champion)
+    {
         VBox card = new VBox(8);
         card.setAlignment(Pos.CENTER);
         card.setPadding(new Insets(10));
@@ -196,13 +210,15 @@ public class ChampionListGui {
         championImage.setFitHeight(80);
         championImage.setPreserveRatio(true);
 
-        if (loadingGif != null) {
+        if (loadingGif != null)
+        {
             championImage.setImage(loadingGif);
         }
 
         Image image = new Image(champion.getImageUrl(), true);
         image.progressProperty().addListener((obs, oldVal, newVal) -> {
-            if (newVal.doubleValue() >= 1.0) {
+            if (newVal.doubleValue() >= 1.0)
+            {
                 championImage.setImage(image);
             }
         });
@@ -219,7 +235,6 @@ public class ChampionListGui {
 
         card.getChildren().addAll(championImage, nameLabel);
 
-        // Hover effects only, no click handler
         card.setOnMouseEntered(e -> card.setStyle(
                 "-fx-background-color: #2a2f35;" +
                         "-fx-background-radius: 8;" +
@@ -235,7 +250,6 @@ public class ChampionListGui {
                         "-fx-border-radius: 8;" +
                         "-fx-border-width: 2;"
         ));
-
         return card;
     }
 

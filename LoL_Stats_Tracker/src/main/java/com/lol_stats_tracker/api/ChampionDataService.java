@@ -7,7 +7,6 @@ import java.util.List;
 
 public class ChampionDataService
 {
-
     private static final Champion[] championsData = {
             new Champion("1", "Annie", "Mid"),
             new Champion("2", "Olaf", "Jungle"),

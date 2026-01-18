@@ -74,7 +74,7 @@ public class SearchHistoryHandler
             }
 
             Type type = new TypeToken<List<SearchHistory>>(){}.getType();
-            return gson.fromJson(json, type);
+            return gson.fromJson(json, type);//JSON => Liste
         }
         catch (IOException e)
         {

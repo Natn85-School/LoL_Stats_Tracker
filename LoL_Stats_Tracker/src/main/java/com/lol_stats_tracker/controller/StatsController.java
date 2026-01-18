@@ -10,7 +10,7 @@ import java.util.List;
 
 public class StatsController
 {
-    public Player searchPlayer (String gameName,String tagLine)
+    public Player searchPlayer(String gameName,String tagLine)
     {
         Player player = RiotApiClient.getPlayer(gameName,tagLine);
 

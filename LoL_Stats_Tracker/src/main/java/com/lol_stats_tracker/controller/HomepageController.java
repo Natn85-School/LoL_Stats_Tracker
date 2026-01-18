@@ -2,9 +2,11 @@ package com.lol_stats_tracker.controller;
 
 import java.util.List;
 
-public class HomepageController {
+public class HomepageController
+{
 
-    public List<String> getMenuItems() {
+    public List<String> getMenuItems()
+    {
         return List.of(
                 "Champion List",
                 "Team Generator",
@@ -13,16 +15,20 @@ public class HomepageController {
         );
     }
 
-    public String getWelcomeTitle() {
+    public String getWelcomeTitle()
+    {
         return "Welcome to LoL Stats Tracker";
     }
 
-    public String getWelcomeSubtitle() {
+    public String getWelcomeSubtitle()
+    {
         return "Your Ultimate League of Legends Companion";
     }
 
-    public void handleMenuAction(String menuTitle, javafx.stage.Stage stage) {
-        switch (menuTitle) {
+    public void handleMenuAction(String menuTitle, javafx.stage.Stage stage)
+    {
+        switch (menuTitle)
+        {
             case "Champion List" -> new com.lol_stats_tracker.gui.ChampionListGui(stage);
             case "Player Stats" -> new com.lol_stats_tracker.gui.PlayerStatsGui(stage);
             case "Credits" -> new com.lol_stats_tracker.gui.CreditsGui(stage);

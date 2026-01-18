@@ -12,7 +12,6 @@ public class ChampionMastery
 
     public int getChampionId()
     {
-
         return championId;
     }
 

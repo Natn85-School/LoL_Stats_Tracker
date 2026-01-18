@@ -14,18 +14,21 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class HomepageGui {
+public class HomepageGui
+{
 
     private final Stage stage;
     private final HomepageController controller;
 
-    public HomepageGui(Stage stage) {
+    public HomepageGui(Stage stage)
+    {
         this.stage = stage;
         this.controller = new HomepageController();
         show();
     }
 
-    private void show() {
+    private void show()
+    {
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-color: #0a1428;");
 
@@ -44,7 +47,8 @@ public class HomepageGui {
         VBox buttons = new VBox(30);
         buttons.setAlignment(Pos.CENTER);
 
-        for (String item : controller.getMenuItems()) {
+        for (String item : controller.getMenuItems())
+        {
             Button btn = createButton(item, "#c89b3c");
             btn.setOnAction(e -> controller.handleMenuAction(item, stage));
             buttons.getChildren().add(btn);
@@ -63,18 +67,21 @@ public class HomepageGui {
         stage.show();
     }
 
-    private HBox createTopBanner() {
+    private HBox createTopBanner()
+    {
         HBox banner = new HBox();
         banner.setPadding(new Insets(30, 40, 30, 40));
         banner.setAlignment(Pos.CENTER);
         banner.setStyle("-fx-background-color: #010a13; -fx-border-color: #c89b3c; -fx-border-width: 0 0 2 0;");
 
-        try {
+        try
+        {
             ImageView logo = new ImageView(new Image(getClass().getResourceAsStream("/logo.png")));
             logo.setFitHeight(80);
             logo.setPreserveRatio(true);
             banner.getChildren().add(logo);
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             Label fallback = new Label("LoL Stats Tracker");
             fallback.setStyle("-fx-font-size: 36px; -fx-text-fill: #c89b3c;");
             banner.getChildren().add(fallback);
@@ -83,7 +90,8 @@ public class HomepageGui {
         return banner;
     }
 
-    private Button createButton(String text, String color) {
+    private Button createButton(String text, String color)
+    {
         Button button = new Button(text);
         button.setStyle(
                 "-fx-background-color: " + color + ";" +

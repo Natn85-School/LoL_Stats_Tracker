@@ -4,13 +4,10 @@ package com.lol_stats_tracker.api;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.lol_stats_tracker.model.Champion;
 import com.lol_stats_tracker.model.Player;
 import com.lol_stats_tracker.model.ChampionMastery;
-import com.lol_stats_tracker.api.ChampionDataService;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -18,45 +15,45 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 //client  durch id und #
-public class RiotApiClient {
+public class RiotApiClient
+{
 
     public static final Gson gson = new Gson();
 
     public static Player getPlayer(String gameName, String tagline)
     {
-        try {
+        try
+        {
             String urlString = "https://" + ApiConfig.REGION + ".api.riotgames.com" + "/riot/account/v1/accounts/by-riot-id/" +
                     gameName + "/" + tagline;
 
-
             String json = makeRequest(urlString);
-            if (json == null) {
+            if (json == null)
+            {
                 return null;
 
             }
-
             return gson.fromJson(json, Player.class);
-
-
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             e.printStackTrace();
             return null;
         }
     }
 
-    //summ inffo
+    //summ info
     public static void getSummonnerInfo(Player player)
     {
-        try {
+        try
+        {
 
             String urlString = "https://" + ApiConfig.PLATFORM + ".api.riotgames.com" + "/lol/summoner/v4/summoners/by-puuid/" + player.getPuuid();
 
             String json = makeRequest(urlString);
-            if (json == null) {
+            if (json == null)
+            {
                 return;
-
             }
 
             JsonObject summonerData = gson.fromJson(json, JsonObject.class);
@@ -65,9 +62,9 @@ public class RiotApiClient {
             player.setSummonerLevel(Integer.parseInt(summonerData.get("summonerLevel").getAsString()));
 
 
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             e.printStackTrace();
-
         }
 
     }
@@ -77,11 +74,13 @@ public class RiotApiClient {
     {
         List<ChampionMastery> champlist = new ArrayList<>();
 
-        try {
+        try
+        {
             String urlString = "https://" + ApiConfig.PLATFORM + ".api.riotgames.com" + "/lol/champion-mastery/v4/champion-masteries/by-puuid/" + puuid + "/top?count=" + count;
 
             String json = makeRequest(urlString);
-            if (json == null) {
+            if (json == null)
+            {
                 return champlist;
 
             }
@@ -89,11 +88,8 @@ public class RiotApiClient {
 
             for (int i = 0; i < array.size(); i++)
             {
-
-
                 JsonObject object = array.get(i).getAsJsonObject();
                 ChampionMastery mastery = new ChampionMastery();
-
 
                 int championId = object.get("championId").getAsInt();
 
@@ -106,8 +102,6 @@ public class RiotApiClient {
 
                 champlist.add(mastery);
             }
-
-
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -116,43 +110,37 @@ public class RiotApiClient {
     }
 
 
-
-// http requests funk
-private static String makeRequest(String urlString)
-{
-    try
+    // http requests funk
+    private static String makeRequest(String urlString)
     {
-        URL url = new URL(urlString);
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod("GET");
-        conn.setRequestProperty("X-Riot-Token", ApiConfig.API_KEY);
+        try
+        {
+            URL url = new URL(urlString);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection(); //Verbindung vorbereiten
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("X-Riot-Token", ApiConfig.API_KEY); //Header
 
+            int code = conn.getResponseCode();
+            if (code != 200)
+            {
+                System.out.println("fehler");
+                return null;
+            }
 
-        int code = conn.getResponseCode();
-        if (code != 200) {
-            System.out.println("fehler");
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            StringBuilder response = new StringBuilder();
+            String line;
+
+            while ((line = in.readLine()) != null)
+            {
+                response.append(line);
+            }
+            in.close();
+            return response.toString();
+        } catch (Exception e)
+        {
+            e.printStackTrace();
             return null;
         }
-
-
-        BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-        StringBuilder response = new StringBuilder();
-        String line;
-
-
-        while ((line = in.readLine()) != null)
-        {
-            response.append(line);
-        }
-        in.close();
-        return response.toString();
     }
-    catch (Exception e)
-    {
-    e.printStackTrace();
-    return null;
-    }
-
- }
-
 }

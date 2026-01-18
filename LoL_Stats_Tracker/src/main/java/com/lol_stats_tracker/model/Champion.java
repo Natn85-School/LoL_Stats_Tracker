@@ -4,14 +4,14 @@ public class Champion
 {
     private String id;
     private String name;
-    private String rolle ;
+    private String rolle;
 
 
-    public Champion(String id, String name,String rolle)
+    public Champion(String id, String name, String rolle)
     {
         this.id = id;
         this.name = name;
-        this.rolle = rolle ;
+        this.rolle = rolle;
 
     }
 
@@ -28,10 +28,11 @@ public class Champion
 
     public String getRolle()
     {
-        return rolle ;
+        return rolle;
     }
 
-    public String getImageUrl() {
+    public String getImageUrl()
+    {
         return "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/" + id + ".png";
     }
 }

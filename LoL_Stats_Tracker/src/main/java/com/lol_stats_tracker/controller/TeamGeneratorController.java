@@ -7,27 +7,30 @@ import com.lol_stats_tracker.model.Team;
 import java.util.List;
 import java.util.Random;
 
-public class TeamGeneratorController {
-
+public class TeamGeneratorController
+{
     private ChampionDataService service = new ChampionDataService();
     private Random random = new Random();
 
-    public Team generateTeam(String championName, String role) {
-
+    public Team generateTeam(String championName, String role)
+    {
         Team team = new Team();
         List<Champion> champions = service.getAllChampions();
 
         Champion selectedChampion = null;
 
-        for (Champion c : champions) {
+        for (Champion c : champions)
+        {
             if (c.getName().equalsIgnoreCase(championName)
-                    && c.getRolle().equalsIgnoreCase(role)) {
+                    && c.getRolle().equalsIgnoreCase(role))
+            {
                 selectedChampion = c;
                 break;
             }
         }
 
-        if (selectedChampion == null) {
+        if (selectedChampion == null)
+        {
             return null;
         }
 
@@ -37,18 +40,22 @@ public class TeamGeneratorController {
         team.setAdcChampion(getRandomChampion(champions, "ADC"));
         team.setSupportChampion(getRandomChampion(champions, "Support"));
 
-        if (role.equals("Top")) {
+        if (role.equals("Top"))
+        {
             team.setTopChampion(selectedChampion);
-        } else if (role.equals("Jungle")) {
+        } else if (role.equals("Jungle"))
+        {
             team.setJungleChampion(selectedChampion);
-        } else if (role.equals("Mid")) {
+        } else if (role.equals("Mid"))
+        {
             team.setMidChampion(selectedChampion);
-        } else if (role.equals("ADC")) {
+        } else if (role.equals("ADC"))
+        {
             team.setAdcChampion(selectedChampion);
-        } else if (role.equals("Support")) {
+        } else if (role.equals("Support"))
+        {
             team.setSupportChampion(selectedChampion);
         }
-
         return team;
     }
 
@@ -56,20 +63,21 @@ public class TeamGeneratorController {
     {
         Champion result = null;
 
-        while (result == null) {
+        while (result == null)
+        {
             Champion c = champions.get(random.nextInt(champions.size()));
             if (c.getRolle().equalsIgnoreCase(role))
             {
                 result = c;
             }
         }
-
         return result;
     }
 
     public String teamToString(Team team)
     {
-        if (team == null) {
+        if (team == null)
+        {
             return "Champion not found for selected role";
         }
 

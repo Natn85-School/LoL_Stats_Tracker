@@ -5,25 +5,26 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class CreditsGui {
+public class CreditsGui
+{
 
     private Stage primaryStage;
 
-    public CreditsGui(Stage primaryStage) {
+    public CreditsGui(Stage primaryStage)
+    {
         this.primaryStage = primaryStage;
         show();
     }
 
-    private HBox createTopBanner() {
+    private HBox createTopBanner()
+    {
         HBox banner = new HBox();
-        banner.setAlignment(Pos.CENTER_LEFT);
+        banner.setAlignment(Pos.CENTER);
         banner.setPadding(new Insets(30, 40, 30, 40));
         banner.setStyle("-fx-background-color: #010a13; -fx-border-color: #c89b3c; -fx-border-width: 0 0 2 0;");
         banner.setMinHeight(140);
@@ -58,37 +59,23 @@ public class CreditsGui {
         ));
 
         backButton.setOnAction(e -> new HomepageGui(primaryStage));
-        banner.getChildren().add(backButton);
 
         HBox spacer = new HBox();
         HBox.setHgrow(spacer, javafx.scene.layout.Priority.ALWAYS);
-        banner.getChildren().add(spacer);
 
-        HBox logoBox = new HBox(10);
-        logoBox.setAlignment(Pos.CENTER);
+        Label appName = new Label("LoL Stats Tracker");
+        appName.setStyle("-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #c89b3c;");
 
-        try {
-            Image logo = new Image(getClass().getResourceAsStream("/logo.png"));
-            ImageView logoView = new ImageView(logo);
-            logoView.setFitHeight(80);
-            logoView.setPreserveRatio(true);
-            logoBox.getChildren().add(logoView);
-        } catch (Exception e) {
-            e.printStackTrace();
-            Label appName = new Label("LoL Stats Tracker");
-            appName.setStyle("-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #c89b3c;");
-            logoBox.getChildren().add(appName);
-        }
-
-        banner.getChildren().add(logoBox);
         HBox spacer2 = new HBox();
         HBox.setHgrow(spacer2, javafx.scene.layout.Priority.ALWAYS);
-        banner.getChildren().add(spacer2);
+
+        banner.getChildren().addAll(backButton, spacer, appName, spacer2);
 
         return banner;
     }
 
-    public void show() {
+    public void show()
+    {
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-color: #0a1428;");
 
@@ -126,7 +113,6 @@ public class CreditsGui {
         Label apiSource = new Label("Player Data: Riot Games API");
         apiSource.setStyle("-fx-font-size: 28px; -fx-text-fill: #a09b8c;");
 
-        //wir müssen ein disclaimer wegen den Regeln von Riot nutzen
         Label disclaimer = new Label("LoL Stats Tracker isn't endorsed by Riot Games\nand doesn't reflect the views or opinions of Riot Games\nor anyone officially involved in producing or managing League of Legends.");
         disclaimer.setStyle("-fx-font-size: 24px; -fx-text-fill: #5b5a56; -fx-text-alignment: center;");
         disclaimer.setWrapText(true);
@@ -140,7 +126,6 @@ public class CreditsGui {
                 apiSource,
                 disclaimer
         );
-
 
         layout.getChildren().addAll(title, creditsContent);
         root.setCenter(layout);
