@@ -274,7 +274,7 @@ public class PlayerStatsGui
                 return;
             }
 
-            List<ChampionMastery> champions = controller.getTopChampions(player.getPuuid(), 167);
+            List<ChampionMastery> champions = controller.getTopChampions(player.getPuuid(), 10);
             String formattedStats = controller.formatPlayerStats(player, champions);
 
             resultsLabel.setText(formattedStats);
